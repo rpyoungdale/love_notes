@@ -7,8 +7,8 @@ const mysql = require('mysql');
 
 const con = mysql.createConnection({
     host: process.env.HOST,
-    user: "admin",
-    password: "AWSpackers95-"
+    user: process.env.USER,
+    password: process.env.PASSWORD
 });
 
 app.get('/dailyMessage', (req, res) => {
@@ -61,4 +61,4 @@ app.post('/encouragement', (req, res) => {
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
-})
+}) 
