@@ -7,11 +7,12 @@ const mysql = require('mysql');
 
 const con = mysql.createConnection({
     host: process.env.HOST,
-    user: process.env.USER,
-    password: process.env.PASSWORD
+    user: 'admin',
+    password: process.env.KEY
 });
 
 app.get('/dailyMessage', (req, res) => {
+    console.log('GETTING DAILY MESSAGE...');
     con.connect(function (err) {
         con.query(`SELECT * FROM main.love_notes WHERE type = 'dailyMessage'`, function (err, result, fields) {
             if (err) res.send(err);
@@ -21,6 +22,7 @@ app.get('/dailyMessage', (req, res) => {
 });
 
 app.get('/encouragement', (req, res) => {
+    console.log('GETTING ENCOURAGEMENT...');
     con.connect(function (err) {
         con.query(`SELECT * FROM main.love_notes WHERE type = 'encouragement'`, function (err, result, fields) {
             if (err) res.send(err);
@@ -60,5 +62,5 @@ app.post('/encouragement', (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
+    console.log(`App listening...`)
 }) 
